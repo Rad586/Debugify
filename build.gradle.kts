@@ -175,32 +175,3 @@ publishing {
         }
     }
 }
-
-githubRelease {
-    token(findProperty("github.token")?.toString())
-
-    owner("isXander")
-    repo("Debugify")
-    tagName("${project.version}")
-    targetCommitish("1.19")
-    body(changelogText)
-    releaseAssets(tasks["remapJar"].outputs.files)
-}
-
-tasks.register("publishDebugify") {
-    group = "debugify"
-
-    dependsOn("checkBugStatuses")
-
-    dependsOn("clean")
-
-    dependsOn("modrinth")
-    dependsOn("modrinthSyncBody")
-
-    dependsOn("curseforge")
-
-    dependsOn("githubRelease")
-
-    dependsOn("publish")
-}
-

@@ -75,9 +75,6 @@ public class ConfigGuiHelper {
                     .available(!unavailable)
                     .flag(OptionFlag.GAME_RESTART);
 
-            if (DebugifyClient.bugFixDescriptionCache.has(bug.bugId()))
-                optionBuilder.tooltip(Text.literal(DebugifyClient.bugFixDescriptionCache.get(bug.bugId())));
-
             if (!conflicts.isEmpty())
                 optionBuilder.tooltip(Text.translatable("debugify.error.conflict", bug.bugId(), String.join(", ", conflicts)).formatted(Formatting.RED));
 
